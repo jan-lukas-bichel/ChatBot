@@ -1,2 +1,6 @@
-streamlit
-openai
+langchain # LLM integration framework
+streamlit # Front End
+unstructured # Document loading
+chromadb # Vector storage
+openai # For embeddings
+tiktoken  # For embeddings

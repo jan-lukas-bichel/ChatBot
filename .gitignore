@@ -1,0 +1,7 @@
+/data
+/.streamlit/secrets.toml
+.env
+.idea
+.DS_Store
+chroma_*
+chroma
