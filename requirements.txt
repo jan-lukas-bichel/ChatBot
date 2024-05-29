@@ -4,3 +4,5 @@ unstructured # Document loading
 chromadb # Vector storage
 openai # For embeddings
 tiktoken  # For embeddings
+pinecone-client # Hosting for vector database
+langchain-pinecone # Langchain integration for vector db

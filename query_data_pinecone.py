@@ -1,14 +1,12 @@
 import argparse
-from langchain_community.vectorstores import Chroma
-from langchain_openai import OpenAIEmbeddings
 from langchain_community.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema import Document
+from langchain_pinecone import PineconeVectorStore
+from langchain_openai import OpenAIEmbeddings
 from dotenv import load_dotenv
 from os.path import join, dirname
 import os
-
-CHROMA_PATH = "chroma"
 
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:
@@ -23,7 +21,6 @@ If the question is off topic an there are no matching results, just ask for anot
 question about thew applicant and tell how awesome he is. 
 """
 
-
 def main():
     # Create CLI.
     parser = argparse.ArgumentParser()
@@ -35,12 +32,11 @@ def main():
     dotenv_path = join(dirname(__file__), '.env')
     load_dotenv(dotenv_path)
 
-    # Prepare the DB.
-    embedding_function = OpenAIEmbeddings()
-    db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
+    # Load pinecone db
+    vectorstore = PineconeVectorStore(index_name=os.getenv('PINECONE_INDEX_NAME'), embedding=OpenAIEmbeddings())
 
     # Search the DB.
-    results = db.similarity_search_with_relevance_scores(query_text, k=10)
+    results = vectorstore.similarity_search_with_relevance_scores(query_text, k=5)
     if len(results) == 0 or results[0][1] < 0.7:
         print(f"Unable to find matching results.")
         results = [(Document(page_content="There is no relevant information regarding the applicant in the database") , 1)]
