@@ -32,7 +32,7 @@ def main():
     query_text = args.query_text
 
     # Load API keys from .env
-    dotenv_path = join(dirname(__file__), '.env')
+    dotenv_path = join(dirname(__file__), '../ChatBot/.env')
     load_dotenv(dotenv_path)
 
     # Prepare the DB.

@@ -1,5 +1,7 @@
 /data
-/.streamlit/secrets.toml
+/documentation.txt
+/venv
+*secrets.toml
 .env
 .idea
 .DS_Store

@@ -8,10 +8,10 @@ from dotenv import load_dotenv
 from os.path import join, dirname
 import os
 
-DATA_PATH = "data"
+DATA_PATH = "../ChatBot/data"
 
 def main():
-    dotenv_path = join(dirname(__file__), '.env')
+    dotenv_path = join(dirname(__file__), '../ChatBot/.env')
     load_dotenv(dotenv_path)
     generate_data_store()
 
