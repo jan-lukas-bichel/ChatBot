@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 import streamlit as st
 from langchain.chat_models import ChatOpenAI
 from langchain_pinecone import PineconeVectorStore
@@ -8,6 +9,7 @@ from langchain.schema import Document
 from langchain_core.messages import HumanMessage
 from langchain_core.messages import AIMessage
 
+load_dotenv()
 vectorstore = PineconeVectorStore(index_name=os.getenv('PINECONE_INDEX_NAME'), embedding=OpenAIEmbeddings())
 AUGMENTED_PROMPT = None
 ORIGINAL_PROMPT = None
@@ -26,8 +28,7 @@ question about thew applicant and tell how awesome he is.
 
 st.title("Application Chatbot")
 
-# Set OpenAI API key from Streamlit secrets
-client = ChatOpenAI(model="gpt-3.5-turbo", temperature=.7, openai_api_key=st.secrets["OPENAI_API_KEY"], streaming=True)
+client = ChatOpenAI(model="gpt-3.5-turbo", temperature=.7, streaming=True)
 
 # Initialize chat history
 if "messages" not in st.session_state:

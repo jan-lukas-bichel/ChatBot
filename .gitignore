@@ -2,6 +2,7 @@
 /documentation.txt
 /venv
 *secrets.toml
+*.pem
 .env
 .idea
 .DS_Store

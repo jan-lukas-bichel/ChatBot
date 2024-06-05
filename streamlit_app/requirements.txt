@@ -4,3 +4,4 @@ langchain-openai # For embeddings
 tiktoken  # For embeddings
 pinecone-client # vector database
 langchain-pinecone # Langchain integration for vector db
+python-dotenv # environment variables
