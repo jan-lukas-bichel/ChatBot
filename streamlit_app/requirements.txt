@@ -1,4 +1,5 @@
 langchain # LLM integration framework
+langchain-community # thrid party integrations
 streamlit # Front end
 langchain-openai # For embeddings
 tiktoken  # For embeddings
