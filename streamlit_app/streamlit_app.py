@@ -26,7 +26,7 @@ If the question is off topic an there are no matching results, just ask for anot
 question about thew applicant and tell how awesome he is. 
 """
 
-st.title("Application Chatbot")
+st.title("Job Application Chatbot")
 
 client = ChatOpenAI(model="gpt-3.5-turbo", temperature=.7, streaming=True)
 
