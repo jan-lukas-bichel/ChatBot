@@ -1,14 +1,16 @@
 # 👩‍💼 Job Application Chatbot 👨‍💼
+
+This is a very simple chatbot with the purpose of of representing a job applicant. As it utilizes retrieval augmented generation/ RAG, you can feed it with your own personal information, so it will be able to answer personal questions about yourself as an applicant.
+
 ![a GIF of the chatbot in action. The question is "what programming languages does the apllicant know?" and the answer consist of a handfull of programming languages.](images/job_application_chatbot.gif)
-This is a very simple chatbot powered by retrieval augmented generation/ RAG with the purpose of of representing a job applicant.
 
 ## 💾 Creating the Vector Store
-The core part of the RAG mechanism is mostly based on this [excellent tutorial](https://youtu.be/tcqEUSNCn8I?si=La6D7a_pr6SrrUcN) and the [accompanying code]([https://youtu.be/tcqEUSNCn8I?si=La6D7a_pr6SrrUcN](https://github.com/pixegami/langchain-rag-tutorial).
+The core part of the RAG mechanism is mostly based on this [excellent tutorial](https://youtu.be/tcqEUSNCn8I?si=La6D7a_pr6SrrUcN) and the [accompanying code](https://github.com/pixegami/langchain-rag-tutorial).
 
-The vector store is created in [this script](vector_store/create_database_pinecone.py). The library langchain was levered to split a small text document with information about the applicant into chunks. It was also used to access the OpenAI API to vectorize/ embed the chunks via the LLM GPT-3.5 Turbo. Finally langchain was used to make a call to the Pinecone API, to save the embedded  information to a vector store in the cloud.
+The vector store is created in [create_database_pinecone.py](vector_store/create_database_pinecone.py). The library langchain was levered to split a small text document with information about the applicant into chunks. It was also used to access the OpenAI API to vectorize/ embed the chunks via the LLM GPT-3.5 Turbo. Finally langchain was used to make a call to the Pinecone API, to save the embedded  information to a vector store in the cloud.
 
 ## 💬 Querying the Vector Store
-In [this script](vector_store/query_data_pinecone.py) the database can then be just queried via the command line. The user inputs a prompt, which is also vectorized via ChatGPT. Based on this vectorized prompt a given amount of relevant information chunks will be retrieved from the database, i.e. via euclidian distance. So basically the nearest vectors to the embedded prompt stored in the database will be retrieved. The original prompt is then merged with the retrieved infomration chunks through the means of a simple template. There may or may not have been instructions for the AI to show the applicant in a flattering light.
+In [query_data_pinecone.py](vector_store/query_data_pinecone.py) the database can then be queried via the command line. The user inputs a prompt, which is also vectorized via ChatGPT. Based on this vectorized prompt a given amount of relevant information chunks will be retrieved from the database, i.e. via euclidian distance. So basically the nearest vectors to the embedded prompt stored in the database will be retrieved. The original prompt is then merged with the retrieved infomration chunks through the means of a simple template. There may or may not have been instructions for the AI to show the applicant in a flattering light.
 ```
 Answer the question based only on the following context:
 {retrieved chunks will be inserted here}
@@ -27,8 +29,8 @@ The front-end is based [on another tutorial](https://youtu.be/Z41pEtTAgfs?si=Qy0
 ## ⚙️ Deployment
 If you want to deploy the chatbot on your own, this is how you do it:
 
-1. Create index and get API-Key at [Pinececone](https://www.pinecone.io/)
-2. Get API-Key at [OpenAI](https://platform.openai.com/docs/overview)
+1. Create index and get API-Key at [Pinececone](https://www.pinecone.io/).
+2. Get API-Key at [OpenAI](https://platform.openai.com/docs/overview).
 3. Create at .env file at the root level of this project with the following contents:
 ```
 OPENAI_API_KEY="your-open-ai-api-key-here"
