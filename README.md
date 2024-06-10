@@ -2,6 +2,8 @@
 
 This is a very simple chatbot with the purpose of of representing a job applicant. As it utilizes retrieval augmented generation/ RAG, you can feed it with your own personal information, so it will be able to answer personal questions about yourself as an applicant.
 
+[**Here you can see a hosted live demo.**](https://chatbot-8uahjmr5yxhm3dq3vaszbv.streamlit.app/)
+
 ![a GIF of the chatbot in action. The question is "what programming languages does the apllicant know?" and the answer consist of a handfull of programming languages.](images/job_application_chatbot.gif)
 
 ## 💾 Creating the Vector Store
